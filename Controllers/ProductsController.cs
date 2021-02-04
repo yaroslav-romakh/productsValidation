@@ -76,6 +76,14 @@ namespace ProductsValidation.Controllers
         [HttpGet]
         public IActionResult EditPricesByCategory(Product.Category ? category = null)
         {
+            if (!String.IsNullOrEmpty(category.ToString()))
+            {
+                ViewData["category"] = category.ToString();
+            }
+            else
+            {
+                ViewData["category"] = " ";
+            }
             var products = (null != category) ? 
                 myProducts.Where(prod => prod.Type == category).ToList() : myProducts ;
 
